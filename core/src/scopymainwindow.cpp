@@ -65,6 +65,7 @@
 #endif
 #include <stylehelper.h>
 #include <scopymainwindow_api.h>
+#include <attr_api.h>
 #include <QVersionNumber>
 #include <iioutil/iiounits.h>
 #include <gui/widgets/scopysplashscreen.h>
@@ -740,6 +741,10 @@ void ScopyMainWindow::initApi()
 	ScopyJS *js = ScopyJS::GetInstance();
 	api->setObjectName("scopy");
 	js->registerApi(api);
+
+	Attr_API *attrApi = new Attr_API(this);
+	attrApi->setObjectName("attr");
+	js->registerApi(attrApi);
 }
 
 void ScopyMainWindow::addDeviceToUi(QString id, Device *d)
